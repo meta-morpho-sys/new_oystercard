@@ -7,7 +7,12 @@ describe Oystercard do
 
   describe '#top_up' do
     it 'increases balance of the card' do
-      expect { subject.top_up(50) }.to change { subject.balance }.by 50
+      expect { subject.top_up 50 }.to change { subject.balance }.by 50
+    end
+    it 'has a limit balance' do
+      subject.top_up 90
+      message = 'Maximum balance exceeded'
+      expect { subject.top_up 1 }.to raise_exception message
     end
   end
 end
