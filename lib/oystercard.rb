@@ -7,7 +7,8 @@ class Oystercard
   end
 
   def top_up(sum)
-    raise "Max balance of £ #{MAX_BALANCE} exceeded" if balance >= MAX_BALANCE
+    message = "Max balance of £#{MAX_BALANCE} exceeded."
+    raise message if balance + sum > MAX_BALANCE
     @balance += sum
   end
 end
