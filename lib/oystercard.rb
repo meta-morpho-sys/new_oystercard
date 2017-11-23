@@ -15,7 +15,7 @@ class Oystercard
   end
 
   def deduct(sum)
-    message = "No available funds! Remaining balance is £#{balance}."
+    message = "No availability! Remaining balance is £#{balance}."
     raise message if balance - sum < MIN_REQUIRED_AMOUNT
     @balance -= sum
   end
