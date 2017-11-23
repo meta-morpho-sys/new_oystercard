@@ -5,6 +5,7 @@ class Oystercard
   attr_reader :balance
   def initialize
     @balance = 0
+    @in_journey = false
   end
 
   def top_up(sum)
@@ -17,5 +18,14 @@ class Oystercard
     message = "No available funds! Remaining balance is £#{balance}."
     raise message if balance - sum < MIN_REQUIRED_AMOUNT
     @balance -= sum
+  end
+
+  def touch_in
+    @in_journey = true
+    self
+  end
+
+  def in_journey?
+    @in_journey
   end
 end
