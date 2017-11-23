@@ -15,12 +15,12 @@ class Oystercard
   end
 
   def deduct(sum)
-    message = "No availability! Remaining balance is £#{balance}."
-    raise message if balance - sum < MIN_REQUIRED_AMOUNT
     @balance -= sum
   end
 
   def touch_in
+    message = "Minimum required is £#{MIN_REQUIRED_AMOUNT}."
+    raise message if balance < MIN_REQUIRED_AMOUNT
     @in_journey = true
     self
   end

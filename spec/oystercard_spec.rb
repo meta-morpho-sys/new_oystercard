@@ -26,17 +26,19 @@ describe Oystercard do
         subject.top_up 70
         expect { subject.deduct 7 }.to change { subject.balance }.by(-7)
       end
-      it 'has a minimum required amount.' do
-        subject.top_up 2
-        message = "No availability! Remaining balance is £#{subject.balance}."
-        expect { subject.deduct 3 }.to raise_exception message
-      end
     end
   end
   context 'When used for travelling' do
     describe '#touch in/#touch out support' do
       it 'once touched in, it is in use.' do
+        subject.top_up 20
         expect(subject.touch_in).to be_in_journey
+      end
+      it 'has a minimum required amount.' do
+        subject.top_up 2
+        min_balance = described_class::MIN_REQUIRED_AMOUNT
+        message = "Minimum required is £#{min_balance}."
+        expect { subject.touch_in }.to raise_exception message
       end
       it 'once touched out, it is not in use' do
         expect(subject.touch_out).not_to be_in_journey
