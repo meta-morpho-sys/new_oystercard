@@ -11,4 +11,8 @@ class Oystercard
     raise message if balance + sum > MAX_BALANCE
     @balance += sum
   end
+
+  def deduct(sum)
+    @balance -= sum
+  end
 end

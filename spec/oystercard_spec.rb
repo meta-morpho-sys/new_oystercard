@@ -16,4 +16,10 @@ describe Oystercard do
       expect { subject.top_up 1 }.to raise_exception message
     end
   end
+  describe '#deduct' do
+    it 'decrease the balance of the card' do
+      subject.top_up 70
+      expect { subject.deduct 7 }.to change { subject.balance }.by(-7)
+    end
+  end
 end
