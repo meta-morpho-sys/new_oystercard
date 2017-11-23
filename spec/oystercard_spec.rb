@@ -21,5 +21,11 @@ describe Oystercard do
       subject.top_up 70
       expect { subject.deduct 7 }.to change { subject.balance }.by(-7)
     end
+    it 'has a minimum required amount' do
+      subject.top_up 2
+      # minimum = described_class::MIN_REQUIRED_AMOUNT
+      message = "No available funds! Remaining balance is £#{subject.balance}."
+      expect { subject.deduct 3 }.to raise_exception message
+    end
   end
 end

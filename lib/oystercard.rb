@@ -1,5 +1,6 @@
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
+  MIN_REQUIRED_AMOUNT = 3
   MAX_BALANCE = 90
   attr_reader :balance
   def initialize
@@ -13,6 +14,8 @@ class Oystercard
   end
 
   def deduct(sum)
+    message = "No available funds! Remaining balance is £#{balance}."
+    raise message if balance - sum < MIN_REQUIRED_AMOUNT
     @balance -= sum
   end
 end

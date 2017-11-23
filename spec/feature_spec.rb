@@ -1,6 +1,6 @@
 require 'oystercard'
 
 card = Oystercard.new
-card.top_up(40)
-card.top_up(20)
-card.deduct 7
+card.top_up 89
+card.deduct 86
+card.deduct 1.5
