@@ -27,9 +27,12 @@ describe Oystercard do
       expect { subject.deduct 3 }.to raise_exception message
     end
   end
-  describe 'touch in/touch out support' do
+  describe '#touch in/#touch out support' do
     it 'once touched in, it is in use.' do
       expect(subject.touch_in).to be_in_journey
+    end
+    it 'once touched out, it is not in use' do
+      expect(subject.touch_out).not_to be_in_journey
     end
   end
 end
