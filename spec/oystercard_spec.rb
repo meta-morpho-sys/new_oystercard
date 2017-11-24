@@ -1,45 +1,40 @@
 require 'oystercard'
 
 describe Oystercard do
-  let(:entry_station) { double :station }
+  let(:entry_station) { double :entry_station }
 
-  context 'When initialized' do
-    it 'is issued with initial balance of £0.' do
-      expect(subject.balance).to eq 0
-    end
-    it 'it is not in use' do
-      expect(subject.in_journey?).to eq false
-    end
+  it 'is issued with initial balance of £0.' do
+    expect(subject.balance).to eq 0
   end
-  context 'When managing credit' do
-    describe '#top_up' do
-      it 'increases balance of the card.' do
-        expect { subject.top_up 50 }.to change { subject.balance }.by 50
-      end
-      it 'has a limit balance.' do
-        max_balance = described_class::MAX_BALANCE
-        subject.top_up max_balance
-        message = "Max balance of £#{max_balance} exceeded."
-        expect { subject.top_up 1 }.to raise_exception message
-      end
+  it 'it is not in use' do
+    expect(subject.in_journey?).to eq false
+  end
+
+  describe '#top_up' do
+    it 'increases balance of the card.' do
+      expect { subject.top_up 50 }.to change { subject.balance }.by 50
+    end
+    it 'has a limit balance.' do
+      max_balance = described_class::MAX_BALANCE
+      subject.top_up max_balance
+      message = "Max balance of £#{max_balance} exceeded."
+      expect { subject.top_up 1 }.to raise_exception message
     end
   end
   describe '#touch in' do
-    xit 'once touched in, it is in use.' do
+    it 'once touched in, it is in use.' do
       subject.top_up 10
-      expect(subject.touch_in).to be_in_journey
+      expect(subject.touch_in('Euston Square')).to be_in_journey
     end
-    xit 'has a minimum required amount.' do
+    it 'has a minimum required amount.' do
       subject.top_up 2
       min_amount = described_class::MIN_REQUIRED_AMOUNT
       message = "Minimum required is £#{min_amount}."
-      expect { subject.touch_in }.to raise_exception message
+      expect { subject.touch_in('Euston Square') }.to raise_exception message
     end
     it 'remembers the entry station' do
-      allow(entry_station).to receive(:name) { 'Piccadilly' }
-      subject.top_up 10
-      subject.touch_in 'Piccadilly'
-      expect(subject.station).to eq 'Piccadilly'
+      subject.top_up(10).touch_in 'Piccadilly'
+      expect(subject.entry_station).to eq 'Piccadilly'
     end
   end
   describe '#touch_out' do
@@ -56,7 +51,7 @@ describe Oystercard do
     it 'forgets the name of the entry station' do
       subject.top_up(10).touch_in('Piccadilly')
       subject.touch_out
-      expect(subject.station).to eq nil
+      expect(subject.entry_station).to eq nil
     end
   end
 end
