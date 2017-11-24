@@ -14,26 +14,26 @@
       <img src="./assets/0.10.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-24T16:19:13+00:00">2017-11-24T16:19:13+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-24T16:33:57+00:00">2017-11-24T16:33:57+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">91.18%</span></span>
+    (<span class="covered_percent"><span class="green">91.78%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.42
+         1.65
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>3</b> files in total.
-    <b>68</b> relevant lines. 
-    <span class="green"><b>62</b> lines covered</span> and
+    <b>73</b> relevant lines. 
+    <span class="green"><b>67</b> lines covered</span> and
     <span class="red"><b>6</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#89ff59b41c2e096ddc7cfd646c1472cc833cc854" class="src_link" title="lib/oystercard.rb">lib/oystercard.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>41</td>
-        <td>26</td>
-        <td>26</td>
+        <td>43</td>
+        <td>28</td>
+        <td>28</td>
         <td>0</td>
-        <td>2.1</td>
+        <td>2.7</td>
       </tr>
       
       <tr>
@@ -72,10 +72,10 @@
       
       <tr>
         <td class="strong"><a href="#e85eb6e966ba14022b2cb7806067cab9c5023603" class="src_link" title="spec/oystercard_spec.rb">spec/oystercard_spec.rb</a></td>
-        <td class="yellow strong">85.37 %</td>
-        <td>59</td>
-        <td>41</td>
-        <td>35</td>
+        <td class="yellow strong">86.36 %</td>
+        <td>62</td>
+        <td>44</td>
+        <td>38</td>
         <td>6</td>
         <td>1.0</td>
       </tr>
@@ -101,8 +101,8 @@
     <h3>lib/oystercard.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>26</b> relevant lines. 
-      <span class="green"><b>26</b> lines covered</span> and
+      <b>28</b> relevant lines. 
+      <span class="green"><b>28</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -152,14 +152,14 @@
           <code class="ruby">  def initialize</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="8">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="8" data-linenumber="8">
+          <span class="hits">8</span>
           
           <code class="ruby">    @balance = 0</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="9">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="8" data-linenumber="9">
+          <span class="hits">8</span>
           
           <code class="ruby">    @in_journey = false</code>
         </li>
@@ -182,148 +182,148 @@
           <code class="ruby">  def top_up(sum)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="13">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="13">
+          <span class="hits">6</span>
           
           <code class="ruby">    message = &quot;Max balance of £#{MAX_BALANCE} exceeded.&quot;</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="14">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="14">
+          <span class="hits">6</span>
           
           <code class="ruby">    raise message if balance + sum &gt; MAX_BALANCE</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="15">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="15">
+          <span class="hits">5</span>
           
           <code class="ruby">    @balance += sum</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="covered" data-hits="5" data-linenumber="16">
+          <span class="hits">5</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    self</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="18">
           
-          <code class="ruby">  def touch_in(station)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="19">
           <span class="hits">1</span>
           
+          <code class="ruby">  def touch_in(station)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="20">
+          <span class="hits">2</span>
+          
           <code class="ruby">    message = &quot;Minimum required is £#{MIN_REQUIRED_AMOUNT}.&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="21">
+          <span class="hits">2</span>
           
           <code class="ruby">    raise message if balance &lt; MIN_REQUIRED_AMOUNT</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="22">
+          <span class="hits">2</span>
           
           <code class="ruby">    @station = station</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="23">
+          <span class="hits">2</span>
           
           <code class="ruby">    @in_journey = true</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="23">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="24">
+          <span class="hits">2</span>
           
           <code class="ruby">    self</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="24">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="26">
+        <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
           <code class="ruby">  def touch_out</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="27">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="28">
+          <span class="hits">3</span>
           
           <code class="ruby">    deduct(MIN_REQUIRED_AMOUNT)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="28">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="29">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    @station = nil</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="30">
+          <span class="hits">3</span>
           
           <code class="ruby">    @in_journey = false</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="29">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="31">
+          <span class="hits">3</span>
           
           <code class="ruby">    self</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
+        <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
           <code class="ruby">  def in_journey?</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="33">
+        <li class="covered" data-hits="2" data-linenumber="35">
           <span class="hits">2</span>
           
           <code class="ruby">    @in_journey</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="never" data-hits="" data-linenumber="36">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
@@ -335,22 +335,34 @@
         <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
+          <code class="ruby">  private</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="40">
+          <span class="hits">1</span>
+          
           <code class="ruby">  def deduct(sum)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="39">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="41">
+          <span class="hits">3</span>
           
           <code class="ruby">    @balance -= sum</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">end</code>
@@ -431,10 +443,10 @@
         <div class="source_table" id="e85eb6e966ba14022b2cb7806067cab9c5023603">
   <div class="header">
     <h3>spec/oystercard_spec.rb</h3>
-    <h4><span class="yellow">85.37 %</span> covered</h4>
+    <h4><span class="yellow">86.36 %</span> covered</h4>
     <div>
-      <b>41</b> relevant lines. 
-      <span class="green"><b>35</b> lines covered</span> and
+      <b>44</b> relevant lines. 
+      <span class="green"><b>38</b> lines covered</span> and
       <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
@@ -601,196 +613,214 @@
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">  context &#39;When used for travelling&#39; do</code>
+          <code class="ruby">  describe &#39;#touch in&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &#39;#touch in&#39; do</code>
+          <code class="ruby">    xit &#39;once touched in, it is in use.&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="29">
           
-          <code class="ruby">      xit &#39;once touched in, it is in use.&#39; do</code>
+          
+          <code class="ruby">      subject.top_up 10</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">        subject.top_up 10</code>
+          <code class="ruby">      expect(subject.touch_in).to be_in_journey</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">        expect(subject.touch_in).to be_in_journey</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
-          <code class="ruby">      xit &#39;has a minimum required amount.&#39; do</code>
+          <code class="ruby">    xit &#39;has a minimum required amount.&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
+          
+          <code class="ruby">      subject.top_up 2</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="34">
           
           
-          <code class="ruby">        subject.top_up 2</code>
+          <code class="ruby">      min_amount = described_class::MIN_REQUIRED_AMOUNT</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="35">
           
           
-          <code class="ruby">        min_amount = described_class::MIN_REQUIRED_AMOUNT</code>
+          <code class="ruby">      message = &quot;Minimum required is £#{min_amount}.&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="36">
           
           
-          <code class="ruby">        message = &quot;Minimum required is £#{min_amount}.&quot;</code>
+          <code class="ruby">      expect { subject.touch_in }.to raise_exception message</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="37">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">        expect { subject.touch_in }.to raise_exception message</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">    it &#39;remembers the entry station&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
-          <code class="ruby">      it &#39;remembers the entry station&#39; do</code>
+          <code class="ruby">      allow(entry_station).to receive(:name) { &#39;Piccadilly&#39; }</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
-          <code class="ruby">        allow(entry_station).to receive(:name) { &#39;Piccadilly&#39; }</code>
+          <code class="ruby">      subject.top_up 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="41">
           <span class="hits">1</span>
           
-          <code class="ruby">        subject.top_up 10</code>
+          <code class="ruby">      subject.touch_in &#39;Piccadilly&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">        subject.touch_in &#39;Piccadilly&#39;</code>
+          <code class="ruby">      expect(subject.station).to eq &#39;Piccadilly&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="43">
           
-          <code class="ruby">        expect(subject.station).to eq &#39;Piccadilly&#39;</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">  describe &#39;#touch_out&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &#39;#touch_out&#39; do</code>
+          <code class="ruby">    it &#39;once touched out, it is not in use&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="47">
           <span class="hits">1</span>
           
-          <code class="ruby">      it &#39;once touched out, it is not in use&#39; do</code>
+          <code class="ruby">      expect(subject.touch_out).not_to be_in_journey</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="48">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        expect(subject.touch_out).not_to be_in_journey</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="49">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="50">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      it &#39;decreases the balance of the card.&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="51">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        subject.top_up 2</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="52">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        min_charge = described_class::MIN_REQUIRED_AMOUNT</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="53">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        expect do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="54">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          subject.touch_out</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="55">
-          <span class="hits">2</span>
-          
-          <code class="ruby">        end.to change { subject.balance }.by(-min_charge)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &#39;decreases the balance of the card.&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      subject.top_up 10</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="51">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      min_charge = described_class::MIN_REQUIRED_AMOUNT</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="53">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        subject.touch_out</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="54">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      end.to change { subject.balance }.by(-min_charge)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="56">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &#39;forgets the name of the entry station&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      subject.top_up(10).touch_in(&#39;Piccadilly&#39;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      subject.touch_out</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(subject.station).to eq nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">end</code>

@@ -13,6 +13,7 @@ class Oystercard
     message = "Max balance of £#{MAX_BALANCE} exceeded."
     raise message if balance + sum > MAX_BALANCE
     @balance += sum
+    self
   end
 
   def touch_in(station)
@@ -25,6 +26,7 @@ class Oystercard
 
   def touch_out
     deduct(MIN_REQUIRED_AMOUNT)
+    @station = nil
     @in_journey = false
     self
   end
