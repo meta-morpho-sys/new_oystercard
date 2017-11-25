@@ -11,6 +11,9 @@ describe Oystercard do
     it 'is not in use' do
       expect(subject.in_journey?).to eq false
     end
+    it 'has an empty list of journeys' do
+      expect(subject.journeys).to be_empty
+    end
   end
 
   context 'when managing the credit' do
