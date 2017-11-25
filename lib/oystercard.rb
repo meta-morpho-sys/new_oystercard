@@ -2,22 +2,24 @@
 class Oystercard
   MIN_REQUIRED_AMOUNT = 3
   MAX_BALANCE = 90
+
+  BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
+  INSUFFICIENT_FUNDS_MSG = "Minimum required is £#{MIN_REQUIRED_AMOUNT}.".freeze
   attr_reader :balance, :entry_station
 
   def initialize
     @balance = 0
+    @entry_station = nil
   end
 
   def top_up(sum)
-    message = "Max balance of £#{MAX_BALANCE} exceeded."
-    raise message if balance + sum > MAX_BALANCE
+    raise BALANCE_OVERFLOW_MSG if balance + sum > MAX_BALANCE
     @balance += sum
     self
   end
 
   def touch_in(station)
-    message = "Minimum required is £#{MIN_REQUIRED_AMOUNT}."
-    raise message if balance < MIN_REQUIRED_AMOUNT
+    raise INSUFFICIENT_FUNDS_MSG if balance < MIN_REQUIRED_AMOUNT
     @entry_station = station
     self
   end

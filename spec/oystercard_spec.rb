@@ -3,55 +3,69 @@ require 'oystercard'
 describe Oystercard do
   let(:entry_station) { double :entry_station }
 
-  it 'is issued with initial balance of £0.' do
-    expect(subject.balance).to eq 0
-  end
-  it 'it is not in use' do
-    expect(subject.in_journey?).to eq false
+  context 'by default' do
+    it 'has balance of £0.' do
+      expect(subject.balance).to eq 0
+    end
+    it 'is not in use' do
+      expect(subject.in_journey?).to eq false
+    end
   end
 
   describe '#top_up' do
-    it 'increases balance of the card.' do
+    it 'increases balance' do
       expect { subject.top_up 50 }.to change { subject.balance }.by 50
     end
-    it 'has a limit balance.' do
+
+    it 'has a balance limit' do
       max_balance = described_class::MAX_BALANCE
       subject.top_up max_balance
-      message = "Max balance of £#{max_balance} exceeded."
-      expect { subject.top_up 1 }.to raise_exception message
+      expect do
+        subject.top_up 1
+      end.to raise_exception described_class::BALANCE_OVERFLOW_MSG
     end
   end
+
   describe '#touch in' do
-    it 'once touched in, it is in use.' do
+    it 'once touched in, it is in use' do
       subject.top_up 10
-      expect(subject.touch_in('Euston Square')).to be_in_journey
+      subject.touch_in('Euston Square')
+      expect(subject.in_journey?).to eq true
     end
-    it 'has a minimum required amount.' do
+
+    it 'has a minimum required amount' do
       subject.top_up 2
       min_amount = described_class::MIN_REQUIRED_AMOUNT
       message = "Minimum required is £#{min_amount}."
-      expect { subject.touch_in('Euston Square') }.to raise_exception message
+      expect { subject.touch_in('Euston') }.to raise_exception message
     end
+
     it 'remembers the entry station' do
       subject.top_up(10).touch_in 'Piccadilly'
       expect(subject.entry_station).to eq 'Piccadilly'
     end
   end
+
   describe '#touch_out' do
     it 'once touched out, it is not in use' do
       expect(subject.touch_out).not_to be_in_journey
     end
-    it 'decreases the balance of the card.' do
-      subject.top_up 10
-      min_charge = described_class::MIN_REQUIRED_AMOUNT
-      expect do
+
+    context 'when topped up' do
+      before(:each) { subject.top_up 10 }
+
+      it 'decreases the balance of the card' do
+        min_charge = described_class::MIN_REQUIRED_AMOUNT
+        expect do
+          subject.touch_out
+        end.to change { subject.balance }.by(-min_charge)
+      end
+
+      it 'forgets the name of the entry station' do
+        subject.touch_in('Piccadilly')
         subject.touch_out
-      end.to change { subject.balance }.by(-min_charge)
-    end
-    it 'forgets the name of the entry station' do
-      subject.top_up(10).touch_in('Piccadilly')
-      subject.touch_out
-      expect(subject.entry_station).to eq nil
+        expect(subject.entry_station).to eq nil
+      end
     end
   end
 end
