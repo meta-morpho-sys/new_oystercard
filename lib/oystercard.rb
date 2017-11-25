@@ -5,7 +5,7 @@ class Oystercard
   # Constants assigned error messages.
   BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
   INSUFFICIENT_FUNDS_MSG = "Minimum required is £#{MIN_REQUIRED_AMOUNT}.".freeze
-  attr_reader :balance, :entry_station
+  attr_reader :balance, :entry_station, :exit_station
 
   def initialize
     @balance = 0
@@ -24,9 +24,10 @@ class Oystercard
     self
   end
 
-  def touch_out
+  def touch_out(station)
     deduct(MIN_REQUIRED_AMOUNT)
     @entry_station = nil
+    @exit_station = station
     self
   end
 
