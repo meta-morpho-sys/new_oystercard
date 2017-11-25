@@ -27,17 +27,11 @@ describe Oystercard do
   end
 
   describe '#touch in' do
-    it 'once touched in, it is in use' do
-      subject.top_up 10
-      subject.touch_in('Euston Square')
-      expect(subject.in_journey?).to eq true
-    end
-
     it 'has a minimum required amount' do
       subject.top_up 2
-      min_amount = described_class::MIN_REQUIRED_AMOUNT
-      message = "Minimum required is £#{min_amount}."
-      expect { subject.touch_in('Euston') }.to raise_exception message
+      expect do
+        subject.touch_in('Euston')
+      end.to raise_exception described_class::INSUFFICIENT_FUNDS_MSG
     end
 
     it 'remembers the entry station' do
@@ -51,8 +45,13 @@ describe Oystercard do
       expect(subject.touch_out).not_to be_in_journey
     end
 
-    context 'when topped up' do
+    context 'with a top-up' do
       before(:each) { subject.top_up 10 }
+
+      it 'once touched in, it is in use' do
+        subject.touch_in('Euston Square')
+        expect(subject.in_journey?).to eq true
+      end
 
       it 'decreases the balance of the card' do
         min_charge = described_class::MIN_REQUIRED_AMOUNT
