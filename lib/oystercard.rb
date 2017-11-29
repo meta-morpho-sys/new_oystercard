@@ -10,7 +10,7 @@ class Oystercard
   def initialize
     @balance = 0
     @entry_station = nil
-    @journeys = []
+    @journeys = {}
   end
 
   def top_up(sum)
@@ -34,6 +34,11 @@ class Oystercard
 
   def in_journey?
     !@entry_station.nil?
+  end
+
+  def track_journeys(entry_station, exit_station)
+    @journeys[:entry_station] = entry_station
+    @journeys[:exit_station] = exit_station
   end
 
   private

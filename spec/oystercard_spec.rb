@@ -3,9 +3,10 @@ require 'oystercard'
 describe Oystercard do
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
+  let(:journey) { { entry_station: entry_station, exit_station: exit_station } }
 
   context 'by default' do
-    it 'has a balance of £0.' do
+    it 'has a balance of £0' do
       expect(subject.balance).to eq 0
     end
     it 'is not in use' do
@@ -47,14 +48,14 @@ describe Oystercard do
     end
   end
 
-  context 'When topped up' do
+  context 'when in journey' do
     before(:each) do
       subject.top_up 10
       subject.touch_in entry_station
     end
 
-    context 'touched in' do
-      it 'it is in use' do
+    context 'and touched in' do
+      it 'is in use' do
         expect(subject.in_journey?).to eq true
       end
 
@@ -63,19 +64,29 @@ describe Oystercard do
       end
     end
 
-    context 'touched out' do
+    context 'and touched out' do
       it 'decreases the balance of the card' do
         min_charge = described_class::MIN_REQUIRED_AMOUNT
-        p subject
         expect do
           subject.touch_out exit_station
         end.to change { subject.balance }.by(-min_charge)
       end
 
-      it 'remembers exit station' do
+      it 'remembers the exit station' do
         subject.touch_out exit_station
         expect(subject.exit_station).to eq exit_station
       end
+    end
+  end
+  context "when the journey's cycle is over" do
+    before(:each) do
+      subject.top_up 10
+      subject.touch_in entry_station
+      subject.touch_out exit_station
+    end
+    it 'stores the journey' do
+      subject.track_journeys(entry_station, exit_station)
+      expect(subject.journeys).to include journey
     end
   end
 end
