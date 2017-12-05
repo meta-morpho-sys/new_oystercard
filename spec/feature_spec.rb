@@ -2,8 +2,8 @@ require 'oystercard'
 
 describe 'Travelling with Oystercard' do
   let(:card) { Oystercard.new }
-  let(:entry_station) { Station.new :Piccadilly, 1 }
-  let(:exit_station) { Station.new :Clapton, 2 }
+  let(:entry_station) { Station.new :'Piccadilly Circus' }
+  let(:exit_station) { Station.new :Clapton }
 
   context 'when managing credit' do
     it 'is has £0 credit but can be topped up' do
@@ -20,14 +20,15 @@ describe 'Travelling with Oystercard' do
       card.top_up 10
       card.touch_in(entry_station)
       expect(card.in_journey?).to eq true
-      expect(entry_station.name).to eq :Piccadilly
+      expect(entry_station.name).to eq :'Piccadilly Circus'
+      expect(entry_station.zone).to eq '1'
     end
   end
 
   context 'when the journey ends' do
     it 'deducts the fare and stores a list of journeys' do
       expect do
-        card.touch_out(exit_station)
+        card.touch_out(Station.new(:Clapton))
       end.to change(card, :balance).by(-Oystercard::MIN_REQUIRED_AMOUNT)
     end
   end
