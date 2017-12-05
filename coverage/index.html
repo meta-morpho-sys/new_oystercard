@@ -14,7 +14,7 @@
       <img src="./assets/0.10.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-12-05T18:17:24+00:00">2017-12-05T18:17:24+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-12-05T19:58:17+00:00">2017-12-05T19:58:17+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.52
+         2.49
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>5</b> files in total.
-    <b>134</b> relevant lines. 
-    <span class="green"><b>134</b> lines covered</span> and
+    <b>133</b> relevant lines. 
+    <span class="green"><b>133</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,9 +63,9 @@
       <tr>
         <td class="strong"><a href="#033bc3f4e64f570dab1f5bd1c21eab5232a346dc" class="src_link" title="lib/station.rb">lib/station.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>18</td>
-        <td>11</td>
-        <td>11</td>
+        <td>25</td>
+        <td>10</td>
+        <td>10</td>
         <td>0</td>
         <td>6.4</td>
       </tr>
@@ -434,8 +434,8 @@
     <h3>lib/station.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>11</b> relevant lines. 
-      <span class="green"><b>11</b> lines covered</span> and
+      <b>10</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -503,49 +503,91 @@
           <code class="ruby">  def get_name_and_zone(filename = &#39;stations_and_zones.dat&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="11">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="11">
           
-          <code class="ruby">    file = File.open(filename, &#39;r&#39;)</code>
+          
+          <code class="ruby">    # file = File.open(filename, &#39;r&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="12">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="12">
           
-          <code class="ruby">    file.readlines.each do |line|</code>
+          
+          <code class="ruby">    # file.readlines.each do |line|</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="13">
-          <span class="hits">18</span>
+        <li class="never" data-hits="" data-linenumber="13">
           
-          <code class="ruby">      name_st, zone = line.chomp.split(&#39;,&#39;)</code>
+          
+          <code class="ruby">    #   st_name, zone = line.chomp.split(&#39;,&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="14">
-          <span class="hits">18</span>
+        <li class="never" data-hits="" data-linenumber="14">
           
-          <code class="ruby">      @zone = zone if name_st.to_sym == @name</code>
+          
+          <code class="ruby">    #   @zone = zone if st_name.to_sym == @name</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    # end</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="16">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="16">
           
-          <code class="ruby">    file.close</code>
+          
+          <code class="ruby">    # file.close</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="18">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    File.open(filename, &#39;r&#39;) do |file|</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="19">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      file.readlines.each do |line|</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="20">
+          <span class="hits">18</span>
+          
+          <code class="ruby">        st_name, zone = line.chomp.split(&#39;,&#39;)</code>
+        </li>
+      
+        <li class="covered" data-hits="18" data-linenumber="21">
+          <span class="hits">18</span>
+          
+          <code class="ruby">        @zone = zone if st_name.to_sym == @name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">end</code>

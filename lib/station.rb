@@ -8,11 +8,11 @@ class Station
   end
 
   def get_name_and_zone(filename = 'stations_and_zones.dat')
-    file = File.open(filename, 'r')
-    file.readlines.each do |line|
-      name_st, zone = line.chomp.split(',')
-      @zone = zone if name_st.to_sym == @name
+    File.open(filename, 'r') do |file|
+      file.readlines.each do |line|
+        st_name, zone = line.chomp.split(',')
+        @zone = zone if st_name.to_sym == @name
+      end
     end
-    file.close
   end
 end
