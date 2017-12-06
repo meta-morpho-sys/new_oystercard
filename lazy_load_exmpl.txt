@@ -1,0 +1,12 @@
+
+  # lazy load pattern
+  #
+  # needed resource HASH
+  # don't wish to load it every time, so do this instead:
+  #
+  # HASH = nil
+  # def fun_needing_hash(name):
+  #    if HASH.nil?
+  #        HASH = load_hash()
+  #    HASH[name]
+  # end

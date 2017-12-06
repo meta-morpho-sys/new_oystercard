@@ -1,0 +1,38 @@
+@startuml
+
+class Oystercard {
+MIN_REQUIRED_AMOUNT
+MAX_BALANCE
+BALANCE_OVERFLOW_MGS
+INSUFFICIENT_FUNDS_MSG
+..
+balance
+entry_station
+journeys
+..
++ top_up(sum)
++ touch_in(station)
++ touch_out(station)
++ in_journey?()
++ track_journeys(entry_station, exit_station)
+- deduct(sum)
+}
+
+class Station {
+name
+zone
++initialize(name)
++get_zone(filename=)
+}
+
+class Journey {
+start_journey()
+end_journey()
+calculate_fare()
+complete?()
+
+}
+Oystercard -- Station
+
+
+@enduml
