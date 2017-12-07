@@ -26,13 +26,16 @@ zone
 }
 
 class Journey {
-start_journey()
-end_journey()
+start()
+finish()
 calculate_fare()
 complete?()
 
 }
 Oystercard -- Station
+Journey -- Station
+Oystercard -- Journey
+
 
 
 @enduml

@@ -89,6 +89,37 @@
         null,
         null
       ],
+      "/Users/astarte/MAcourse/new_oystercard/spec/journey_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/astarte/MAcourse/new_oystercard/lib/journey.rb": [
+        null,
+        null,
+        null,
+        1,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
       "/Users/astarte/MAcourse/new_oystercard/spec/oystercard_spec.rb": [
         1,
         null,
@@ -235,6 +266,6 @@
         null
       ]
     },
-    "timestamp": 1512643600
+    "timestamp": 1512646002
   }
 }

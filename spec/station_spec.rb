@@ -13,16 +13,16 @@ describe Station do
 
   it 'is created with a correct name' do
     expect { Station.new :Piccadilly }
-        .to raise_exception 'No matching station.'
+      .to raise_exception 'No matching station.'
   end
 
   it 'knows its zone1' do
-    station = Station.new :Clapton
-    expect(station.zone).to eq '2'
+    station = Station.new :'Piccadilly Circus'
+    expect(station.zone).to eq '1'
   end
 
   it 'knows its zone2' do
-    station = Station.new :'Piccadilly Circus'
-    expect(station.zone).to eq '1'
+    station = Station.new :Clapton
+    expect(station.zone).to eq '2'
   end
 end
