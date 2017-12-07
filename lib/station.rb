@@ -9,6 +9,7 @@ class Station
       st_name, zone = line.chomp.split(',')
       return zone if st_name.to_sym == name
     end
+    raise 'No matching station.'
   end
 
   def initialize(name)
