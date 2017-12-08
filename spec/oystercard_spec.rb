@@ -13,7 +13,7 @@ describe Oystercard do
       expect(subject.in_journey?).to eq false
     end
     it 'has an empty list of journeys' do
-      expect(subject.journeys).to be_empty
+      expect(subject.journeys).to eq []
     end
   end
 
@@ -48,14 +48,14 @@ describe Oystercard do
     end
   end
 
-  context 'when in journey' do
+  context 'when in use' do
     before(:each) do
       subject.top_up 10
       subject.touch_in entry_station
     end
 
     context 'and touched in' do
-      it 'is in use' do
+      it 'is in journey' do
         expect(subject.in_journey?).to eq true
       end
 
@@ -78,15 +78,19 @@ describe Oystercard do
       end
     end
   end
-  context "when the journey's cycle is over" do
+  context 'after one or more journeys' do
     before(:each) do
       subject.top_up 10
       subject.touch_in entry_station
       subject.touch_out exit_station
     end
-    it 'stores the journey' do
-      subject.track_journeys(entry_station, exit_station)
-      expect(subject.journeys).to include journey
+    it 'stores a journey' do
+      expect(subject.journeys).to eq [journey]
+    end
+    it 'stores a number of journeys' do
+      subject.touch_in entry_station
+      subject.touch_out exit_station
+      expect(subject.journeys).to eq [journey, journey]
     end
   end
 end

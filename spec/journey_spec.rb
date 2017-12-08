@@ -1,10 +1,10 @@
 require 'journey'
 
 describe Journey do
-  it 'does not start when initialized' do
-    expect(subject.started?).to be false
-  end
-  it 'starts' do
-    expect(subject.start).to be true
+  let(:station) { double :station, zone: 1 }
+
+  it 'starts with an entry station' do
+    journey = Journey.new :station
+    expect(journey.entry_station).to be :station
   end
 end

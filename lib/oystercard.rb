@@ -1,3 +1,4 @@
+require_relative 'journey'
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
   MIN_REQUIRED_AMOUNT = 3
@@ -10,7 +11,7 @@ class Oystercard
   def initialize
     @balance = 0
     @entry_station = nil
-    @journeys = {}
+    @journeys = []
   end
 
   def top_up(sum)
@@ -22,11 +23,13 @@ class Oystercard
   def touch_in(station)
     raise INSUFFICIENT_FUNDS_MSG if balance < MIN_REQUIRED_AMOUNT
     @entry_station = station
+    # p journey = Journey.new(station)
     self
   end
 
   def touch_out(station)
     deduct(MIN_REQUIRED_AMOUNT)
+    track_journeys(@entry_station, station)
     @entry_station = nil
     @exit_station = station
     self
@@ -37,8 +40,7 @@ class Oystercard
   end
 
   def track_journeys(entry_station, exit_station)
-    @journeys[:entry_station] = entry_station
-    @journeys[:exit_station] = exit_station
+    @journeys << { entry_station: entry_station, exit_station: exit_station }
   end
 
   private

@@ -1,16 +1,9 @@
-#  it is responsible for starting a journey, finishing a journey,
+#  It is responsible for starting a journey, finishing a journey,
 # calculating the fare of a journey, and returning whether or not
 # the journey is complete.
 class Journey
-  def initialize
-    @started = false
-  end
-
-  def start
-    @started = true
-  end
-
-  def started?
-    @started
+  attr_reader :entry_station
+  def initialize(entry_station)
+    @entry_station = entry_station
   end
 end
