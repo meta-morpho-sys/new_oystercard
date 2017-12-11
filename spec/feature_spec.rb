@@ -5,7 +5,7 @@ describe 'Travelling with Oystercard' do
   let(:card) { Oystercard.new }
   let(:entry_station) { Station.new :'Piccadilly Circus' }
   let(:exit_station) { Station.new :Clapton }
-  let(:journey) { Journey.new :Clapton }
+  let(:journey) { Journey.new(entry_station, exit_station) }
 
   context 'when managing credit' do
     it 'is has £0 credit but can be topped up' do

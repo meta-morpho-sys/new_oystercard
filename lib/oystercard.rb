@@ -23,7 +23,6 @@ class Oystercard
   def touch_in(station)
     raise INSUFFICIENT_FUNDS_MSG if balance < MIN_REQUIRED_AMOUNT
     @entry_station = station
-    # p journey = Journey.new(station)
     self
   end
 
