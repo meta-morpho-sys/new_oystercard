@@ -1,4 +1,5 @@
 require 'oystercard'
+require 'station'
 
 describe 'Travelling with Oystercard' do
   let(:card) { Oystercard.new }
@@ -45,8 +46,8 @@ describe 'Travelling with Oystercard' do
       card.touch_in(entry2); card.touch_out(exit1)
       expect(card.journeys)
         .to eq [
-          { entry_station: entry1, exit_station: exit1 },
-          { entry_station: entry2, exit_station: exit1 }
+          Journey.new(entry1, exit1),
+          Journey.new(entry2, exit1)
         ]
     end
   end

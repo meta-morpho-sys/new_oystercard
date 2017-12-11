@@ -24,14 +24,14 @@ class Station {
 }
 
 class Journey {
-    initialize(entry_station)
-    finish(exit_station)
-    calculate_fare()
-    complete?()
+    + initialize(entry_station)
+    + finish(exit_station)
+    + calculate_fare()
+    + complete?()
 }
 
 Oystercard -- Station
-Journey -- Station
+Journey "1" --> "2" Station: stations
 Oystercard "1" --> "0..*" Journey: journeys
 
 

@@ -40,7 +40,7 @@ class Oystercard
   end
 
   def track_journeys(entry_station, exit_station)
-    @journeys << { entry_station: entry_station, exit_station: exit_station }
+    @journeys << Journey.new(entry_station, exit_station)
   end
 
   private

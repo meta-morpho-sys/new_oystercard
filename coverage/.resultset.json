@@ -3,6 +3,8 @@
     "coverage": {
       "/Users/astarte/MAcourse/new_oystercard/spec/feature_spec.rb": [
         1,
+        1,
+        null,
         null,
         1,
         5,
@@ -116,13 +118,44 @@
         1,
         1,
         1,
+        15,
+        15,
+        null,
+        null,
         1,
+        null,
+        5,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/astarte/MAcourse/new_oystercard/lib/station.rb": [
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        10,
+        23,
+        23,
+        null,
+        2,
+        null,
+        null,
+        1,
+        8,
+        8,
         null,
         null
       ],
       "/Users/astarte/MAcourse/new_oystercard/spec/journey_spec.rb": [
         1,
         null,
+        1,
         1,
         1,
         null,
@@ -259,29 +292,8 @@
         1,
         null,
         null
-      ],
-      "/Users/astarte/MAcourse/new_oystercard/lib/station.rb": [
-        null,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        10,
-        23,
-        23,
-        null,
-        2,
-        null,
-        null,
-        1,
-        8,
-        8,
-        null,
-        null
       ]
     },
-    "timestamp": 1512773728
+    "timestamp": 1513011554
   }
 }

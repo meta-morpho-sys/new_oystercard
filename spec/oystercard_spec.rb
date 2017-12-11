@@ -3,7 +3,7 @@ require 'oystercard'
 describe Oystercard do
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
-  let(:journey) { { entry_station: entry_station, exit_station: exit_station } }
+  let(:journey) { Journey.new(entry_station, exit_station) }
 
   context 'by default' do
     it 'has a balance of £0' do
