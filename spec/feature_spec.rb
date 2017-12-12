@@ -29,6 +29,8 @@ describe 'Travelling with Oystercard' do
 
   context 'when the journey ends' do
     it 'deducts the fare and stores a list of journeys' do
+      card.top_up 10
+      card.touch_in(entry_station)
       expect do
         card.touch_out(Station.new(:Clapton))
       end.to change(card, :balance).by(-Oystercard::MIN_REQUIRED_AMOUNT)
@@ -39,6 +41,7 @@ describe 'Travelling with Oystercard' do
     it 'prints a list of journeys' do
       card.top_up 40
       entry1 = Station.new(:Clapton)
+      entry3 = Station.new(:Clapton)
       entry2 = Station.new(:'Euston Square')
       exit1 = Station.new(:'Piccadilly Circus')
       # rubocop:disable Style/Semicolon
@@ -46,7 +49,7 @@ describe 'Travelling with Oystercard' do
       card.touch_in(entry2); card.touch_out(exit1)
       expect(card.journeys)
         .to eq [
-          Journey.new(entry1, exit1),
+          Journey.new(entry3, exit1),
           Journey.new(entry2, exit1)
         ]
     end

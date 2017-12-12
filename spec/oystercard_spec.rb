@@ -39,10 +39,14 @@ describe Oystercard do
 
   describe '#touch_out' do
     it 'causes it not to be in use' do
+      subject.top_up 10
+      subject.touch_in entry_station
       expect(subject.touch_out(exit_station)).not_to be_in_journey
     end
 
     it 'forgets the name of the entry station' do
+      subject.top_up 10
+      subject.touch_in entry_station
       subject.touch_out exit_station
       expect(subject.entry_station).to eq nil
     end
@@ -73,6 +77,8 @@ describe Oystercard do
       end
 
       it 'remembers the exit station' do
+        subject.top_up 10
+        subject.touch_in entry_station
         subject.touch_out exit_station
         expect(subject.exit_station).to eq exit_station
       end

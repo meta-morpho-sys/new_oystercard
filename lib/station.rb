@@ -16,4 +16,8 @@ class Station
     @name = name
     @zone = self.class.get_zone @name
   end
+
+  def ==(other)
+    name == other.name && zone == other.zone
+  end
 end

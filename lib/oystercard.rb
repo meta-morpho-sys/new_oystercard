@@ -6,12 +6,20 @@ class Oystercard
   # Constants assigned error messages.
   BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
   INSUFFICIENT_FUNDS_MSG = "Minimum required is £#{MIN_REQUIRED_AMOUNT}.".freeze
-  attr_reader :balance, :entry_station, :exit_station, :journeys
+  attr_reader :balance, :journey, :journeys
 
   def initialize
     @balance = 0
-    @entry_station = nil
+    @journey = nil
     @journeys = []
+  end
+
+  def entry_station
+    journey.entry_station if journey
+  end
+
+  def exit_station
+    journeys[-1].exit_station if journeys[-1]
   end
 
   def top_up(sum)
@@ -22,24 +30,20 @@ class Oystercard
 
   def touch_in(station)
     raise INSUFFICIENT_FUNDS_MSG if balance < MIN_REQUIRED_AMOUNT
-    @entry_station = station
+    @journey = Journey.new station
     self
   end
 
   def touch_out(station)
     deduct(MIN_REQUIRED_AMOUNT)
-    track_journeys(@entry_station, station)
-    @entry_station = nil
-    @exit_station = station
+    @journey.exit_station = station
+    @journeys << journey
+    @journey = nil
     self
   end
 
   def in_journey?
-    !@entry_station.nil?
-  end
-
-  def track_journeys(entry_station, exit_station)
-    @journeys << Journey.new(entry_station, exit_station)
+    !journey.nil?
   end
 
   private
