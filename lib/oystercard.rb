@@ -14,14 +14,6 @@ class Oystercard
     @journeys = []
   end
 
-  def entry_station
-    journey.entry_station if journey
-  end
-
-  def exit_station
-    journeys[-1].exit_station if journeys[-1]
-  end
-
   def top_up(sum)
     raise BALANCE_OVERFLOW_MSG if balance + sum > MAX_BALANCE
     @balance += sum

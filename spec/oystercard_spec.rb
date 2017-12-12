@@ -43,13 +43,6 @@ describe Oystercard do
       subject.touch_in entry_station
       expect(subject.touch_out(exit_station)).not_to be_in_journey
     end
-
-    it 'forgets the name of the entry station' do
-      subject.top_up 10
-      subject.touch_in entry_station
-      subject.touch_out exit_station
-      expect(subject.entry_station).to eq nil
-    end
   end
 
   context 'when in use' do
@@ -62,10 +55,6 @@ describe Oystercard do
       it 'is in journey' do
         expect(subject.in_journey?).to eq true
       end
-
-      it 'remembers the entry station' do
-        expect(subject.entry_station).to eq entry_station
-      end
     end
 
     context 'and touched out' do
@@ -74,13 +63,6 @@ describe Oystercard do
         expect do
           subject.touch_out exit_station
         end.to change { subject.balance }.by(-min_charge)
-      end
-
-      it 'remembers the exit station' do
-        subject.top_up 10
-        subject.touch_in entry_station
-        subject.touch_out exit_station
-        expect(subject.exit_station).to eq exit_station
       end
     end
   end
