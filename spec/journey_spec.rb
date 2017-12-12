@@ -12,6 +12,18 @@ describe Journey do
 
   it 'has a penalty fare by default' do
     journey = Journey.new en_station, ex_station
-    expect(journey.compute_fare).to eq described_class::PENALTY_FARE
+    expect(journey.fare).to eq described_class::PENALTY_FARE
   end
+
+  context 'knows a journey is not complete' do
+    it 'when exit station is not registered' do
+      journey = Journey.new en_station
+      expect(journey.complete?).to be false
+    end
+    it 'when entry station is not registered' do
+      journey = Journey.new nil, ex_station
+      expect(journey.complete?).to be false
+    end
+  end
+
 end

@@ -1,4 +1,5 @@
 require 'oystercard'
+require 'journey'
 require 'station'
 
 describe 'Travelling with Oystercard' do
