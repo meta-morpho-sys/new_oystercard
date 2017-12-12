@@ -9,4 +9,9 @@ describe Journey do
     expect(journey.entry_station).to eq en_station
     expect(journey.exit_station).to eq ex_station
   end
+
+  it 'has a penalty fare by default' do
+    journey = Journey.new en_station, ex_station
+    expect(journey.compute_fare).to eq described_class::PENALTY_FARE
+  end
 end

@@ -8,7 +8,7 @@ describe 'Travelling with Oystercard' do
   let(:journey) { Journey.new(entry_station, exit_station) }
 
   context 'when managing credit' do
-    it 'is has £0 credit but can be topped up' do
+    it 'it has £0 credit but can be topped up' do
       expect(card.balance).to eq 0
       card.top_up 10
       expect { card.top_up 100 }

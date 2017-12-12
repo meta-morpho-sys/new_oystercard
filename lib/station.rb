@@ -18,6 +18,6 @@ class Station
   end
 
   def ==(other)
-    name == other.name && zone == other.zone
+    name == other.name
   end
 end

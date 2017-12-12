@@ -1,5 +1,10 @@
 require 'oystercard'
 
+def complete_journey
+  subject.touch_in entry_station
+  subject.touch_out exit_station
+end
+
 describe Oystercard do
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
@@ -29,6 +34,7 @@ describe Oystercard do
         subject.top_up 1
       end.to raise_exception described_class::BALANCE_OVERFLOW_MSG
     end
+
     it 'has a minimum required amount' do
       subject.top_up 2
       expect do
@@ -37,47 +43,44 @@ describe Oystercard do
     end
   end
 
-  describe '#touch_out' do
-    it 'causes it not to be in use' do
-      subject.top_up 10
-      subject.touch_in entry_station
-      expect(subject.touch_out(exit_station)).not_to be_in_journey
-    end
-  end
-
-  context 'when in use' do
+  context 'while travelling' do
     before(:each) do
       subject.top_up 10
       subject.touch_in entry_station
     end
 
-    context 'and touched in' do
-      it 'is in journey' do
-        expect(subject.in_journey?).to eq true
+    context 'when in use' do
+      context 'and touched in' do
+        it 'is in journey' do
+          expect(subject.in_journey?).to eq true
+        end
       end
-    end
 
-    context 'and touched out' do
-      it 'decreases the balance of the card' do
-        min_charge = described_class::MIN_REQUIRED_AMOUNT
-        expect do
-          subject.touch_out exit_station
-        end.to change { subject.balance }.by(-min_charge)
+      context 'and touched out' do
+        it 'causes it not to be in use' do
+          expect(subject.touch_out(exit_station)).not_to be_in_journey
+        end
+
+        it 'decreases the balance of the card' do
+          min_charge = described_class::MIN_REQUIRED_AMOUNT
+          expect do
+            subject.touch_out exit_station
+          end.to change { subject.balance }.by(-min_charge)
+        end
       end
     end
   end
+
   context 'after one or more journeys' do
     before(:each) do
       subject.top_up 10
-      subject.touch_in entry_station
-      subject.touch_out exit_station
+      complete_journey
     end
     it 'stores a journey' do
       expect(subject.journeys).to eq [journey]
     end
     it 'stores a number of journeys' do
-      subject.touch_in entry_station
-      subject.touch_out exit_station
+      complete_journey
       expect(subject.journeys).to eq [journey, journey]
     end
   end

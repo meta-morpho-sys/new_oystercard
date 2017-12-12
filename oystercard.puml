@@ -12,7 +12,6 @@ class Oystercard {
     + touch_in(station)
     + touch_out(station)
     + in_journey?()
-    + track_journeys(entry_station, exit_station)
     - deduct(sum)
 }
 
@@ -24,8 +23,7 @@ class Station {
 }
 
 class Journey {
-    + initialize(entry_station)
-    + finish(exit_station)
+    + initialize(entry_station, exit_station)
     + calculate_fare()
     + complete?()
 }

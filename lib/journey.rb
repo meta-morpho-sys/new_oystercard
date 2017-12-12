@@ -1,7 +1,8 @@
-#  It is responsible for starting a journey, finishing a journey,
+#  It is responsible for storing entry and exit stations,
 # calculating the fare of a journey, and returning whether or not
 # the journey is complete.
 class Journey
+  PENALTY_FARE = 6
   attr_reader :entry_station
   attr_accessor :exit_station
   def initialize(entry_station, exit_station = nil)
@@ -14,5 +15,9 @@ class Journey
   def ==(other)
     entry_station == other.entry_station &&
       exit_station == other.exit_station
+  end
+
+  def compute_fare(fare = PENALTY_FARE)
+    @fare = fare
   end
 end
