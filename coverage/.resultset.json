@@ -94,8 +94,7 @@
         8,
         8,
         8,
-        8,
-        8,
+        null,
         null,
         null,
         1,
@@ -107,6 +106,12 @@
         1,
         8,
         null,
+        null,
+        1,
+        8,
+        8,
+        8,
+        null,
         null
       ],
       "/Users/astarte/MAcourse/new_oystercard/lib/journey.rb": [
@@ -114,6 +119,7 @@
         null,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -340,6 +346,6 @@
         null
       ]
     },
-    "timestamp": 1513206382
+    "timestamp": 1513209062
   }
 }

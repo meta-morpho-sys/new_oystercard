@@ -32,6 +32,6 @@ describe Journey do
   end
 
   it 'computes the fare between zone 1 and zone 2' do
-    expect(journey.calculate_fare).to eq described_class::ROUTE_1_2
+    expect(journey.calculate_fare).to eq 1.1
   end
 end
