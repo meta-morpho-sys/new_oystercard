@@ -4,9 +4,9 @@ require 'station'
 # the journey is complete.
 class Journey
   PENALTY_FARE = 6
-  DEFAULT_FARE = PENALTY_FARE # TODO: revisit this
+  DEFAULT_FARE = 3
   ROUTE_1_2 = 2.90
-  attr_reader :entry_station, :fare
+  attr_reader :entry_station, :fare, :penalty
   attr_accessor :exit_station
   def initialize(entry_station, exit_station = nil)
     # If the exit station is defaulted to nil,
@@ -14,6 +14,7 @@ class Journey
     @entry_station = entry_station
     @exit_station = exit_station
     @fare = DEFAULT_FARE
+    @penalty = PENALTY_FARE
   end
 
   def ==(other)
@@ -22,6 +23,7 @@ class Journey
   end
 
   def calculate_fare(entry = entry_station, exit = exit_station)
+    return penalty unless complete?
     src_zone = entry.zone
     dst_zone = exit.zone
     lookup_zone_crossing_fare(src_zone, dst_zone)

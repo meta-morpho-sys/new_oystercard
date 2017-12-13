@@ -1,18 +1,17 @@
 require 'journey'
 
 describe Journey do
+  let(:journey) { Journey.new(en_station, ex_station) }
   let(:en_station) { double :station, zone: 1 }
   let(:ex_station) { double :station, zone: 2 }
 
   it 'has entry and exit stations' do
-    journey = Journey.new en_station, ex_station
     expect(journey.entry_station).to eq en_station
     expect(journey.exit_station).to eq ex_station
   end
 
   it 'has a penalty fare by default' do
-    journey = Journey.new en_station, ex_station
-    expect(journey.fare).to eq described_class::PENALTY_FARE
+    expect(journey.penalty).to eq described_class::PENALTY_FARE
   end
 
   context 'knows a journey is not complete' do
@@ -25,10 +24,14 @@ describe Journey do
       journey = Journey.new nil
       expect(journey.complete?).to be false
     end
+
+    it 'charges a penalty fare' do
+      journey = Journey.new en_station
+      expect(journey.calculate_fare).to eq described_class::PENALTY_FARE
+    end
   end
 
   it 'computes the fare between zone 1 and zone 2' do
-    journey = Journey.new en_station, ex_station
     expect(journey.calculate_fare).to eq described_class::ROUTE_1_2
   end
 end
