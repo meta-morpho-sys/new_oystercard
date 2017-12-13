@@ -28,9 +28,7 @@ class Oystercard
 
   def touch_out(station)
     deduct(MIN_REQUIRED_AMOUNT)
-    @journey.exit_station = station
-    @journeys << journey
-    @journey = nil
+    finish_journey(station)
     self
   end
 
@@ -42,5 +40,11 @@ class Oystercard
 
   def deduct(sum)
     @balance -= sum
+  end
+
+  def finish_journey(station)
+    @journey.exit_station = station
+    @journeys << journey
+    @journey = nil
   end
 end
