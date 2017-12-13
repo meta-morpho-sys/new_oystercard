@@ -20,10 +20,15 @@ describe Journey do
       journey = Journey.new en_station
       expect(journey.complete?).to be false
     end
+
     it 'when entry station is not registered' do
-      journey = Journey.new nil, ex_station
+      journey = Journey.new nil
       expect(journey.complete?).to be false
     end
   end
 
+  it 'computes the fare between zone 1 and zone 2' do
+    journey = Journey.new en_station, ex_station
+    expect(journey.calculate_fare).to eq described_class::ROUTE_1_2
+  end
 end
