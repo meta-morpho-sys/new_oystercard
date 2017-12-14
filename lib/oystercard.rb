@@ -1,7 +1,7 @@
 require_relative 'journey'
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
-  MIN_REQUIRED_AMOUNT = 3
+  MIN_REQUIRED_AMOUNT = Journey::DEFAULT_FARE
   MAX_BALANCE = 90
   # Constants assigned error messages.
   BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
