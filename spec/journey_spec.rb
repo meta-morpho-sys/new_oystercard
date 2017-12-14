@@ -20,13 +20,18 @@ describe Journey do
       expect(journey.complete?).to be false
     end
 
+    it 'and charges a penalty fare' do
+      journey = Journey.new en_station
+      expect(journey.calculate_fare).to eq described_class::PENALTY_FARE
+    end
+
     it 'when entry station is not registered' do
       journey = Journey.new nil
       expect(journey.complete?).to be false
     end
 
-    it 'charges a penalty fare' do
-      journey = Journey.new en_station
+    it 'and charges a penalty fare' do
+      journey = Journey.new nil
       expect(journey.calculate_fare).to eq described_class::PENALTY_FARE
     end
   end

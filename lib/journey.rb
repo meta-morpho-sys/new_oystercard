@@ -6,7 +6,6 @@ class Journey
   PENALTY_FARE = 6
   DEFAULT_FARE = 3
   COST_PER_ZONE = 1.1
-  ROUTE_1_2 = 2.90
 
   attr_reader :entry_station, :fare, :penalty
   attr_accessor :exit_station
@@ -36,11 +35,8 @@ class Journey
 
   private
 
-  # TODO: finish the logic for route method. Find a way to avoid if statements.
   def lookup_zone_crossing_fare(src_zone, dst_zone)
     (dst_zone - src_zone).abs * COST_PER_ZONE
     # TODO: Compare with ROUTE[1][2], i.e. ROUTE[src_zone][dst_zone]
   end
 end
-
-# TODO: Read about DeMorgan's Laws

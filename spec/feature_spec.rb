@@ -9,7 +9,7 @@ describe 'Travelling with Oystercard' do
   let(:journey) { Journey.new(entry_station, exit_station) }
 
   context 'when managing credit' do
-    it 'it has £0 credit but can be topped up' do
+    it 'it has initial credit of £0 and can be topped up' do
       expect(card.balance).to eq 0
       card.top_up 10
       expect { card.top_up 100 }
@@ -29,7 +29,7 @@ describe 'Travelling with Oystercard' do
     end
   end
 
-  context 'when the journey ends' do
+  describe 'when the journey ends' do
     it 'deducts the fare and stores a list of journeys' do
       card.top_up 10
       card.touch_in(entry_station)
@@ -37,6 +37,24 @@ describe 'Travelling with Oystercard' do
       expect do
         card.touch_out(Station.new(:Clapton))
       end.to change(card, :balance).by(-fare)
+    end
+    context 'penalty' do
+      it 'deducts penalty fare when a touch-in is missing' do
+        card.top_up 10
+        card.touch_in nil
+        fare = card.journey.calculate_fare
+        expect do
+          card.touch_out(Station.new(:Clapton))
+        end.to change(card, :balance).by(-fare)
+      end
+      it 'deducts penalty fare when a touch-out is missing' do
+        card.top_up 10
+        card.touch_in entry_station
+        fare = card.journey.calculate_fare
+        expect do
+          card.touch_out(Station.new(:Clapton))
+        end.to change(card, :balance).by(-fare)
+      end
     end
   end
 
