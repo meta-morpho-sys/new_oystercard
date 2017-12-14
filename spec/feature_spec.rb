@@ -25,6 +25,7 @@ describe 'Travelling with Oystercard' do
       expect(card.in_journey?).to eq true
       expect(entry_station.name).to eq :'Piccadilly Circus'
       expect(entry_station.zone).to eq '1'
+      expect(journey.entry_station).to eq entry_station
     end
   end
 
