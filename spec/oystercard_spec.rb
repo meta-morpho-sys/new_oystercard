@@ -61,11 +61,11 @@ describe Oystercard do
           expect(subject.touch_out(exit_station)).not_to be_in_journey
         end
 
-        it 'decreases the balance of the card' do
-          min_charge = described_class::MIN_REQUIRED_AMOUNT
+        it 'decreases the balance of the card by fare' do
+          fare = subject.journey.calculate_fare
           expect do
             subject.touch_out exit_station
-          end.to change { subject.balance }.by(-min_charge)
+          end.to change { subject.balance }.by(-fare)
         end
       end
     end

@@ -1,4 +1,5 @@
 require_relative 'journey'
+require_relative 'station'
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
   MIN_REQUIRED_AMOUNT = Journey::DEFAULT_FARE
@@ -27,7 +28,7 @@ class Oystercard
   end
 
   def touch_out(station)
-    deduct(MIN_REQUIRED_AMOUNT)
+    deduct(@journey.calculate_fare)
     finish_journey(station)
     self
   end

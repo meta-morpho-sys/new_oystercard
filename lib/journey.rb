@@ -7,11 +7,11 @@ class Journey
   DEFAULT_FARE = 3
   COST_PER_ZONE = 1.1
   ROUTE_1_2 = 2.90
+
   attr_reader :entry_station, :fare, :penalty
   attr_accessor :exit_station
+
   def initialize(entry_station, exit_station = nil)
-    # If the exit station is defaulted to nil,
-    # then it does not have to be given by the caller. Not until it is needed.
     @entry_station = entry_station
     @exit_station = exit_station
     @fare = DEFAULT_FARE

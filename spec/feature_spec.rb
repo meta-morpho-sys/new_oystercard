@@ -32,9 +32,10 @@ describe 'Travelling with Oystercard' do
     it 'deducts the fare and stores a list of journeys' do
       card.top_up 10
       card.touch_in(entry_station)
+      fare = card.journey.calculate_fare
       expect do
         card.touch_out(Station.new(:Clapton))
-      end.to change(card, :balance).by(-Oystercard::MIN_REQUIRED_AMOUNT)
+      end.to change(card, :balance).by(-fare)
     end
   end
 
