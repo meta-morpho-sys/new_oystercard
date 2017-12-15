@@ -34,6 +34,7 @@ describe 'Travelling with Oystercard' do
       card.top_up 10
       card.touch_in(entry_station)
       fare = card.journey.calculate_fare
+      p fare
       expect do
         card.touch_out(Station.new(:Clapton))
       end.to change(card, :balance).by(-fare)
@@ -43,6 +44,7 @@ describe 'Travelling with Oystercard' do
         card.top_up 10
         card.touch_in nil
         fare = card.journey.calculate_fare
+        p fare
         expect do
           card.touch_out(Station.new(:Clapton))
         end.to change(card, :balance).by(-fare)
