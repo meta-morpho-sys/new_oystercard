@@ -64,7 +64,7 @@ describe Oystercard do
         it 'decreases the balance of the card by fare' do
           expect do
             subject.touch_out exit_station
-          end.to change { subject.balance }.by(a_value_within(0.01).of(-1.1))
+          end.to change { subject.balance }.by(a_value_within(0.01).of(-4.1))
         end
       end
     end

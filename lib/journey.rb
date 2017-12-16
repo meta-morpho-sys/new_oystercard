@@ -3,8 +3,8 @@ require_relative 'station'
 # calculating the fare of a journey, and returning whether or not
 # the journey is complete.
 class Journey
-  PENALTY_FARE = 6
-  DEFAULT_FARE = 3
+  PENALTY_FARE = 6.0
+  DEFAULT_FARE = 3.0
   COST_PER_ZONE = 1.1
 
   attr_reader :entry_station, :fare, :penalty
@@ -36,7 +36,7 @@ class Journey
   private
 
   def lookup_zone_crossing_fare(src_zone, dst_zone)
-    (dst_zone - src_zone).abs * COST_PER_ZONE
+    (dst_zone - src_zone).abs * COST_PER_ZONE + DEFAULT_FARE
     # TODO: Compare with ROUTE[1][2], i.e. ROUTE[src_zone][dst_zone]
   end
 end

@@ -37,6 +37,6 @@ describe Journey do
   end
 
   it 'computes the fare between zone 1 and zone 2' do
-    expect(journey.calculate_fare).to be_within(0.01).of(1.1)
+    expect(journey.calculate_fare).to be_within(0.01).of(4.1)
   end
 end
