@@ -6,8 +6,8 @@ def complete_journey
 end
 
 describe Oystercard do
-  let(:entry_station) { double :station }
-  let(:exit_station) { double :station }
+  let(:entry_station) { double :station, zone: 1 }
+  let(:exit_station) { double :station, zone: 2 }
   let(:journey) { Journey.new(entry_station, exit_station) }
 
   context 'by default' do
@@ -62,10 +62,9 @@ describe Oystercard do
         end
 
         it 'decreases the balance of the card by fare' do
-          fare = subject.journey.calculate_fare
           expect do
             subject.touch_out exit_station
-          end.to change { subject.balance }.by(-fare)
+          end.to change { subject.balance }.by(a_value_within(0.01).of(-1.1))
         end
       end
     end
