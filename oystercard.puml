@@ -32,8 +32,12 @@ class Journey {
     - lookup_zone_crossing_fare(src_zone, dst_zone)
 }
 
-Oystercard -- Station
-Journey "1" --> "2" Station: stations
-Oystercard "1" --> "0..*" Journey: journeys
+class Billing {
+}
+
+Oystercard .. Station
+Journey "1" *--> "2" Station: stations
+Oystercard "1" *--> "5..*" Journey: journeys
+Journey "1" *--> Billing
 
 @enduml

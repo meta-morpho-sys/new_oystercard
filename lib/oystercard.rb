@@ -50,12 +50,3 @@ class Oystercard
     @journey = nil
   end
 end
-
-card = Oystercard.new
-entry = Station.new :'Piccadilly Circus'
-exit = Station.new :Clapton
-
-card.top_up 4
-card.touch_in entry
-p card.touch_out exit
-p card.balance

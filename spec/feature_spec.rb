@@ -1,6 +1,7 @@
 require 'oystercard'
 require 'journey'
 require 'station'
+require 'pp'
 
 describe 'Travelling with Oystercard' do
   let(:card) { Oystercard.new }
@@ -35,27 +36,36 @@ describe 'Travelling with Oystercard' do
 
   describe 'when the journey ends' do
     it 'deducts the fare and stores a list of journeys' do
-      fare = card.journey.calculate_fare
-      # p fare
+      fare = 4.1
       expect do
         card.touch_out(Station.new(:Clapton))
       end.to change(card, :balance).by(-fare)
     end
     context 'penalty' do
       it 'deducts penalty fare when a touch-in is missing' do
+        card = Oystercard.new
         card.top_up 10
         card.touch_in nil
         fare = card.journey.calculate_fare
-        p fare
         expect do
           card.touch_out(Station.new(:Clapton))
         end.to change(card, :balance).by(-fare)
       end
 
+      it 'deducts penalty and no other fare' do
+        card = Oystercard.new
+        card.top_up 10
+        card.touch_in nil
+        penalty = Journey.new(entry_station).penalty
+        expect do
+          card.touch_out(Station.new(:Clapton))
+        end.to change(card, :balance).by(-penalty)
+      end
+
       it 'deducts penalty fare when a touch-out is missing' do
         fare = card.journey.calculate_fare
         expect do
-          card.touch_out(Station.new(:Clapton))
+          card.touch_out nil
         end.to change(card, :balance).by(-fare)
       end
     end
