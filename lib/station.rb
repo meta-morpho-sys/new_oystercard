@@ -2,9 +2,10 @@
 # learns dynamically its zones by referencing a file containing stations names.
 # and zones.
 class Station
+  ASSETS_DIR = '/Users/astarte/MAcourse/new_oystercard/assets/'
   attr_reader :name, :zone
 
-  def self.get_zone(name, filename = 'stations_and_zones.dat')
+  def self.get_zone(name, filename = ASSETS_DIR + 'stations_and_zones.dat')
     File.foreach(filename) do |line|
       st_name, zone = line.chomp.split(',')
       return zone if st_name.to_sym == name
