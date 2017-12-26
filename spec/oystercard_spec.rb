@@ -8,15 +8,16 @@ end
 describe Oystercard do
   let(:entry_station) { double :station, zone: 1 }
   let(:exit_station) { double :station, zone: 2 }
-  let(:journey) { Journey.new(entry_station, exit_station) }
+  let(:j) { Journey.new entry_station, exit_station }
+  let(:journey) { double :journey, entry_station: entry_station }
+  let(:journey_log_1) { double :journey_log, start_journey: entry_station }
+  let(:journey_log_1) { double :journey_log, finish_journey: exit_station }
 
   context 'by default' do
     it 'has a balance of £0' do
       expect(subject.balance).to eq 0
     end
-    it 'is not in use' do
-      expect(subject.in_journey?).to eq false
-    end
+
     it 'has an empty list of journeys' do
       expect(subject.journeys).to eq []
     end
@@ -28,18 +29,18 @@ describe Oystercard do
     end
 
     it 'has a balance limit' do
-      max_balance = described_class::MAX_BALANCE
+      max_balance = Oystercard::MAX_BALANCE
       subject.top_up max_balance
       expect do
         subject.top_up 1
-      end.to raise_exception described_class::BALANCE_OVERFLOW_MSG
+      end.to raise_exception Oystercard::BALANCE_OVERFLOW_MSG
     end
 
     it 'has a minimum required amount' do
       subject.top_up 2
       expect do
         subject.touch_in('Euston')
-      end.to raise_exception described_class::INSUFFICIENT_FUNDS_MSG
+      end.to raise_exception Oystercard::INSUFFICIENT_FUNDS_MSG
     end
   end
 
@@ -50,17 +51,7 @@ describe Oystercard do
     end
 
     context 'when in use' do
-      context 'and touched in' do
-        it 'is in journey' do
-          expect(subject.in_journey?).to eq true
-        end
-      end
-
       context 'and touched out' do
-        it 'causes it not to be in use' do
-          expect(subject.touch_out(exit_station)).not_to be_in_journey
-        end
-
         it 'decreases the balance of the card by fare' do
           expect do
             subject.touch_out exit_station
@@ -76,11 +67,12 @@ describe Oystercard do
       complete_journey
     end
     it 'stores a journey' do
-      expect(subject.journeys).to eq [journey]
+      # expect(subject.journeys).to eq [journey]
+      expect(subject.journeys).to eq [j]
     end
     it 'stores a number of journeys' do
       complete_journey
-      expect(subject.journeys).to eq [journey, journey]
+      expect(subject.journeys).to eq [j, j]
     end
   end
 end

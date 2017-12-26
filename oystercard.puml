@@ -3,15 +3,13 @@
 class Oystercard {
     MIN_REQUIRED_AMOUNT
     MAX_BALANCE
-    BALANCE_OVERFLOW_MGS
-    INSUFFICIENT_FUNDS_MSG
-    ..
     balance
+    + journeys
     ..
     + top_up(sum)
     + touch_in(station)
     + touch_out(station)
-    + in_journey?()
+
     - deduct(sum)
 }
 
@@ -32,12 +30,19 @@ class Journey {
     - lookup_zone_crossing_fare(src_zone, dst_zone)
 }
 
-class Billing {
+class JourneyLog {
+    journey_class
+    initialize(journey_class = Journey)
+    +start_journey(station)
+    +finish_journey(station)
 }
 
 Oystercard .. Station
-Journey "1" *--> "2" Station: stations
-Oystercard "1" *--> "5..*" Journey: journeys
-Journey "1" *--> Billing
+Journey *--> "2" Station: stations
+Oystercard *--> JourneyLog: -journey_log
+JourneyLog *--> "*" Journey: journeys
+
+C <-- A
+C <-- B
 
 @enduml

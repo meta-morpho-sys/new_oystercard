@@ -1,5 +1,5 @@
+require_relative 'journey_log'
 require_relative 'journey'
-require_relative 'station'
 
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
@@ -8,12 +8,17 @@ class Oystercard
   # Constants assigned error messages.
   BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
   INSUFFICIENT_FUNDS_MSG = "Minimum required is £#{MIN_REQUIRED_AMOUNT}.".freeze
-  attr_reader :balance, :journey, :journeys
+  attr_reader :balance, :journey_log
 
   def initialize
     @balance = 0
-    @journey = nil
-    @journeys = []
+    @journey_log = JourneyLog.new
+  end
+
+  # Thi is a convenience accessor. THis method goes into JourneyLog and returns
+  # a list of journeys
+  def journeys
+    @journey_log.journeys
   end
 
   def top_up(sum)
@@ -24,29 +29,19 @@ class Oystercard
 
   def touch_in(station)
     raise INSUFFICIENT_FUNDS_MSG if balance < MIN_REQUIRED_AMOUNT
-    @journey = Journey.new station
+    journey_log.start_journey(station)
     self
   end
 
   def touch_out(station)
-    @journey.exit_station = station
-    deduct(@journey.calculate_fare)
-    finish_journey
+    fare = journey_log.finish_journey(station)
+    deduct(fare)
     self
-  end
-
-  def in_journey?
-    !journey.nil?
   end
 
   private
 
   def deduct(sum)
     @balance -= sum
-  end
-
-  def finish_journey
-    @journeys << journey
-    @journey = nil
   end
 end

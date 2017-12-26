@@ -2,6 +2,7 @@
 # learns dynamically its zones by referencing a file containing stations names.
 # and zones.
 class Station
+  # rubocop:disable Style/MutableConstant
   ASSETS_DIR = '/Users/astarte/MAcourse/new_oystercard/assets/'
   attr_reader :name, :zone
 

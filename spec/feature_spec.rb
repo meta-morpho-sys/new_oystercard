@@ -1,7 +1,6 @@
 require 'oystercard'
 require 'journey'
 require 'station'
-require 'pp'
 
 describe 'Travelling with Oystercard' do
   let(:card) { Oystercard.new }
@@ -25,15 +24,6 @@ describe 'Travelling with Oystercard' do
     end
   end
 
-  context 'when starting the journey' do
-    it 'checks for sufficient credit and records the entry station' do
-      expect(card.in_journey?).to eq true
-      expect(entry_station.name).to eq :'Piccadilly Circus'
-      expect(entry_station.zone).to eq '1'
-      expect(journey.entry_station).to eq entry_station
-    end
-  end
-
   describe 'when the journey ends' do
     it 'deducts the fare and stores a list of journeys' do
       fare = 4.1
@@ -46,7 +36,7 @@ describe 'Travelling with Oystercard' do
         card = Oystercard.new
         card.top_up 10
         card.touch_in nil
-        fare = card.journey.calculate_fare
+        fare = 6
         expect do
           card.touch_out(Station.new(:Clapton))
         end.to change(card, :balance).by(-fare)
@@ -63,7 +53,7 @@ describe 'Travelling with Oystercard' do
       end
 
       it 'deducts penalty fare when a touch-out is missing' do
-        fare = card.journey.calculate_fare
+        fare = 6
         expect do
           card.touch_out nil
         end.to change(card, :balance).by(-fare)

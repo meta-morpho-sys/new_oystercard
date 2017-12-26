@@ -14,7 +14,7 @@ describe Journey do
     expect(journey.penalty).to eq described_class::PENALTY_FARE
   end
 
-  context 'knows a journey is not complete' do
+  context 'knows it is not complete' do
     it 'when exit station is not registered' do
       journey = Journey.new en_station
       expect(journey.complete?).to be false
