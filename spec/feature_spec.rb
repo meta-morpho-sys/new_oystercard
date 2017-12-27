@@ -7,6 +7,7 @@ describe 'Travelling with Oystercard' do
   let(:entry_station) { Station.new :'Piccadilly Circus' }
   let(:exit_station) { Station.new :Clapton }
   let(:journey) { Journey.new(entry_station, exit_station) }
+  let(:billing) { Billing.new }
 
   before(:each) do
     card.top_up 10
@@ -25,7 +26,7 @@ describe 'Travelling with Oystercard' do
   end
 
   describe 'when the journey ends' do
-    it 'deducts the fare and stores a list of journeys' do
+    it 'deducts the fare' do
       fare = 4.1
       expect do
         card.touch_out(Station.new(:Clapton))
@@ -36,7 +37,7 @@ describe 'Travelling with Oystercard' do
         card = Oystercard.new
         card.top_up 10
         card.touch_in nil
-        fare = 6
+        fare = Billing::PENALTY_FARE
         expect do
           card.touch_out(Station.new(:Clapton))
         end.to change(card, :balance).by(-fare)
@@ -46,14 +47,14 @@ describe 'Travelling with Oystercard' do
         card = Oystercard.new
         card.top_up 10
         card.touch_in nil
-        penalty = Journey.new(entry_station).penalty
+        penalty = Billing::PENALTY_FARE
         expect do
           card.touch_out(Station.new(:Clapton))
         end.to change(card, :balance).by(-penalty)
       end
 
       it 'deducts penalty fare when a touch-out is missing' do
-        fare = 6
+        fare = Billing::PENALTY_FARE
         expect do
           card.touch_out nil
         end.to change(card, :balance).by(-fare)
@@ -63,6 +64,7 @@ describe 'Travelling with Oystercard' do
 
   context 'querying the card' do
     it 'prints a list of journeys' do
+      card = Oystercard.new
       card.top_up 40
       entry1 = Station.new(:Clapton)
       entry3 = Station.new(:Clapton)
@@ -71,6 +73,7 @@ describe 'Travelling with Oystercard' do
       # rubocop:disable Style/Semicolon
       card.touch_in(entry1); card.touch_out(exit1)
       card.touch_in(entry2); card.touch_out(exit1)
+      # rubocop:enable Style/Semicolon
       expect(card.journeys)
         .to eq [
           Journey.new(entry3, exit1),

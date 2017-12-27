@@ -21,14 +21,9 @@ class Station {
 }
 
 class Journey {
-    PENALTY_FARE
-    DEFAULT_FARE
-    COST_PER_ZONE
     + initialize(entry_station, exit_station)
-    + calculate_fare()
     + complete?()
-    - lookup_zone_crossing_fare(src_zone, dst_zone)
-}
+   }
 
 class JourneyLog {
     journey_class
@@ -37,12 +32,18 @@ class JourneyLog {
     +finish_journey(station)
 }
 
+class Billing {
+    PENALTY_FARE
+    DEFAULT_FARE
+    COST_PER_ZONE
+    + calculate_fare(journey)
+    - lookup_zone_crossing_fare(src_zone, dst_zone)
+}
+
 Oystercard .. Station
 Journey *--> "2" Station: stations
 Oystercard *--> JourneyLog: -journey_log
 JourneyLog *--> "*" Journey: journeys
-
-C <-- A
-C <-- B
+JourneyLog *--> Billing
 
 @enduml

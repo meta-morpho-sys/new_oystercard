@@ -1,3 +1,5 @@
+require_relative 'billing'
+
 # JourneyLog class is responsible for starting a journey, ending a journey and
 # returning a list of journeys.
 class JourneyLog
@@ -10,10 +12,12 @@ class JourneyLog
   def initialize(journey_class = Journey)
     @journey_class = journey_class
     @journeys = []
+    @billing = Billing.new
   end
 
   # Creates a journey, adds it to the journeys array and returns the current log
   def start_journey(station)
+    raise 'Already in journey' if in_journey?
     @journey = @journey_class.new(station)
     self
   end
@@ -23,12 +27,14 @@ class JourneyLog
   def finish_journey(station)
     @journey.exit_station = station
     @journeys << @journey
-    @journey.calculate_fare
+    fare = @billing.calculate_fare(@journey)
+    @journey = nil
+    fare
+  end
+
+  private
+
+  def in_journey?
+    @journey.nil? ? false : true
   end
 end
-
-# require_relative 'journey'
-# jl = JourneyLog.new(Journey)
-# jl.start_journey('Blah')
-# p jl.journeys
-# p jl.finish_journey('Bloh')

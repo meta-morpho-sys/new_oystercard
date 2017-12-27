@@ -3,7 +3,7 @@ require_relative 'journey'
 
 # Main class that takes account of journeys, fares and penalties.
 class Oystercard
-  MIN_REQUIRED_AMOUNT = Journey::DEFAULT_FARE
+  MIN_REQUIRED_AMOUNT = Billing::DEFAULT_FARE
   MAX_BALANCE = 90
   # Constants assigned error messages.
   BALANCE_OVERFLOW_MSG = "Max balance of £#{MAX_BALANCE} exceeded.".freeze
@@ -15,7 +15,7 @@ class Oystercard
     @journey_log = JourneyLog.new
   end
 
-  # Thi is a convenience accessor. THis method goes into JourneyLog and returns
+  # This is a convenience accessor. This method goes into JourneyLog and returns
   # a list of journeys
   def journeys
     @journey_log.journeys

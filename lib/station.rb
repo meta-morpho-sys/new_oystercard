@@ -4,6 +4,7 @@
 class Station
   # rubocop:disable Style/MutableConstant
   ASSETS_DIR = '/Users/astarte/MAcourse/new_oystercard/assets/'
+  # rubocop:enable Style/MutableConstant
   attr_reader :name, :zone
 
   def self.get_zone(name, filename = ASSETS_DIR + 'stations_and_zones.dat')

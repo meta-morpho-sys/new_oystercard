@@ -10,7 +10,6 @@ describe Oystercard do
   let(:exit_station) { double :station, zone: 2 }
   let(:j) { Journey.new entry_station, exit_station }
   let(:journey) { double :journey, entry_station: entry_station }
-  let(:journey_log_1) { double :journey_log, start_journey: entry_station }
   let(:journey_log_1) { double :journey_log, finish_journey: exit_station }
 
   context 'by default' do
@@ -67,7 +66,6 @@ describe Oystercard do
       complete_journey
     end
     it 'stores a journey' do
-      # expect(subject.journeys).to eq [journey]
       expect(subject.journeys).to eq [j]
     end
     it 'stores a number of journeys' do
