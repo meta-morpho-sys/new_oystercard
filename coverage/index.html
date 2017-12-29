@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-12-28T16:21:25+00:00">2017-12-28T16:21:25+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-12-29T17:55:32+00:00">2017-12-29T17:55:32+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -93,7 +93,7 @@
       <tr>
         <td class="strong"><a href="#033bc3f4e64f570dab1f5bd1c21eab5232a346dc" class="src_link" title="lib/station.rb">lib/station.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>27</td>
+        <td>24</td>
         <td>13</td>
         <td>13</td>
         <td>0</td>
@@ -1088,139 +1088,121 @@
           <code class="ruby">class Station</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
-          
-          
-          <code class="ruby">  # rubocop:disable Style/MutableConstant</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
-          
-          
-          <code class="ruby">  # ASSETS_DIR = &#39;/Users/astarte/MAcourse/new_oystercard/assets/&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  p ASSETS_DIR = File.dirname(__FILE__) + &#39;/../assets/&#39;</code>
+          <code class="ruby">  ASSETS_DIR = File.dirname(__FILE__) + &#39;/../assets/&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">  # rubocop:enable Style/MutableConstant</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
           <code class="ruby">  attr_reader :name, :zone</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="7">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.get_zone(name, filename = ASSETS_DIR + &#39;stations_and_zones.dat&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="12">
+        <li class="covered" data-hits="18" data-linenumber="9">
           <span class="hits">18</span>
           
           <code class="ruby">    File.foreach(filename) do |line|</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="13">
+        <li class="covered" data-hits="37" data-linenumber="10">
           <span class="hits">37</span>
           
           <code class="ruby">      st_name, zone = line.chomp.split(&#39;,&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="14">
+        <li class="covered" data-hits="37" data-linenumber="11">
           <span class="hits">37</span>
           
           <code class="ruby">      return zone if st_name.to_sym == name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="16">
+        <li class="covered" data-hits="2" data-linenumber="13">
           <span class="hits">2</span>
           
           <code class="ruby">    raise &#39;No matching station.&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
+        <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
           <code class="ruby">  def initialize(name)</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="20">
+        <li class="covered" data-hits="16" data-linenumber="17">
           <span class="hits">16</span>
           
           <code class="ruby">    @name = name</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="21">
+        <li class="covered" data-hits="16" data-linenumber="18">
           <span class="hits">16</span>
           
           <code class="ruby">    @zone = self.class.get_zone @name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="24">
+        <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
           <code class="ruby">  def ==(other)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="25">
+        <li class="covered" data-hits="4" data-linenumber="22">
           <span class="hits">4</span>
           
           <code class="ruby">    name == other.name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="26">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">end</code>
